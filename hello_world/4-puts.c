@@ -1,11 +1,12 @@
 #include <stdio.h>
-/*
- * The main function prints the value wanted
-**/
+
+/**
+* main - prints the value wanted
+* Return: prints the value 0 if everything went well
+*/
+
 int main(void)
 {
-/* The main fuction prints the value wanted with the function puts
- **/
 puts("\"Programming is like building a multilingual puzzle");
 return (0);
 }
