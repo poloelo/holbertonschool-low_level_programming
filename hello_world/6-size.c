@@ -1,6 +1,6 @@
 #include <stdio.h>
 /**
- * main - The function prints the memory taken for all the main types of variables
+ * main - The function prints the memory taken for different types
  * Return: 0 if everything went well
  */
 int main(void)
