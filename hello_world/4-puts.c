@@ -4,6 +4,8 @@
 **/
 int main(void)
 {
+/* The main fuction prints the value wanted with the function puts
+ **/
 puts("\"Programming is like building a multilingual puzzle");
-return 0;
+return (0);
 }
