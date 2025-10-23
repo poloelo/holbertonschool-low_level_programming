@@ -1,12 +1,17 @@
 #include "main.h"
+/**
+ * main - def
+ *
+ *Return: 0 
+ *
+ */
 
 void print_alphabet(void)
 {
-    int a = 'a';
-    for(a, a <= 'z',a = a + 1)
+    char c;
+    for (c ='a'; c <= 'z',c = c + 1)
     {
         _putchar(a);
     }
     _putchar('\n');
-
 }
