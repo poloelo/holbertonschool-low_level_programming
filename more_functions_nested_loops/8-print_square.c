@@ -1,4 +1,10 @@
-#include "main.h" 
+#include "main.h"
+/**
+ * print_square - function that prints a square
+ *
+ * @size: size of the square
+ *
+ */
 void print_square(int size)
 {
 int x;
@@ -12,7 +18,7 @@ else
 {
 for (x = 0; x < size; x++)
 {
-for(y = 0; y < size; y++)
+for (y = 0; y < size; y++)
 {
 _putchar('#');
 }
