@@ -15,4 +15,5 @@ _putchar('0' + 1);
 }
 _putchar('0' + (i % 10));
 }
+_putchar('\n');
 }
