@@ -4,7 +4,7 @@ void print_square(int size)
 {
 int x;
 int y;
-if (size <= 0)break;
+if (size <= 0)return;
 else
 {
 for (x = 0; y < size; x++)
