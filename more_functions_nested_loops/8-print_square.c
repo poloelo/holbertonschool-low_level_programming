@@ -4,7 +4,10 @@ void print_square(int size)
 {
 int x;
 int y;
-if (size <= 0) return (1); 
+if (size <= 0)
+{
+_ptuchar('\n');
+} 
 
 for (x = 0; x < size; x++)
     
