@@ -6,7 +6,7 @@ int x;
 int y;
 if (size <= 0)
 {
-_ptuchar('\n');
+_putchar('\n');
 } 
 
 for (x = 0; x < size; x++)
