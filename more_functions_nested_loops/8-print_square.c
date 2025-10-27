@@ -1,19 +1,22 @@
-#include "main.h"
-
+#include "main.h" 
 void print_square(int size)
 {
 int x;
 int y;
-if (size <= 0)return;
+if (size <= 0)
+{
+_putchar('\n');
+return;
+}
 else
 {
 for (x = 0; y < size; x++)
-{    
-    for(y = 0; y < size; y++)
-    {
-        _putchar('#');
-    }
-    _putchar('\n');
+{
+for(y = 0; y < size; y++)
+{
+_putchar('#');
+}
+_putchar('\n');
 }
 }
 }
