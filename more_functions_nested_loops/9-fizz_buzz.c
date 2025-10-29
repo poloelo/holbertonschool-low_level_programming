@@ -1,91 +1,54 @@
 #include <stdio.h>
 
 /**
- * mul_three - checks if n is multiple of 3
- * @n: integer to check
- * Return: 1 if true, 0 otherwise
+ * is_multiple - check multiples of 3, 5, or both
+ * @n: number to check
+ * Return: 1 = multiple of 3, 2 = multiple of 5, 3 = multiple of both, 0 = none
  */
-int mul_three(int n)
+int is_multiple(int n)
 {
-	if (n % 3 == 0)
+	if (n % 3 == 0 && n % 5 == 0)
+		return (3);
+	else if (n % 3 == 0)
 		return (1);
-	else
-		return (0);
+	else if (n % 5 == 0)
+		return (2);
+	return (0);
 }
 
 /**
- * mul_five - checks if n is multiple of 5
- * @n: integer to check
- * Return: 1 if true, 0 otherwise
+ * print_word - print Fizz, Buzz, or FizzBuzz based on code
+ * @code: number indicating what to print
  */
-int mul_five(int n)
+void print_word(int code)
 {
-	if (n % 5 == 0)
-		return (1);
-	else
-		return (0);
+	if (code == 1)
+		printf("Fizz");
+	else if (code == 2)
+		printf("Buzz");
+	else if (code == 3)
+		printf("FizzBuzz");
 }
 
 /**
- * mul_three_five - checks if n is multiple of both 3 and 5
- * @n: integer to check
- * Return: 1 if true, 0 otherwise
- */
-int mul_three_five(int n)
-{
-	if ((n % 3 == 0) && (n % 5 == 0))
-		return (1);
-	else
-		return (0);
-}
-
-/**
- * print_Fizz - prints "Fizz"
- */
-void print_Fizz(void)
-{
-	printf("Fizz");
-}
-
-/**
- * print_Buzz - prints "Buzz"
- */
-void print_Buzz(void)
-{
-	printf("Buzz");
-}
-
-/**
- * print_Fizz_Buzz - prints "FizzBuzz"
- */
-void print_Fizz_Buzz(void)
-{
-	printf("FizzBuzz");
-}
-
-/**
- * main - prints numbers 1 to 100 with FizzBuzz logic
- * Return: 0
+ * main - prints numbers 1 to 100 with FizzBuzz rules
+ * Return: Always 0
  */
 int main(void)
 {
-	int i;
+	int i, check;
 
 	for (i = 1; i <= 100; i++)
 	{
-		if (mul_three_five(i))
-			print_Fizz_Buzz();
-		else if (mul_three(i))
-			print_Fizz();
-		else if (mul_five(i))
-			print_Buzz();
+		check = is_multiple(i);
+		if (check)
+			print_word(check);
 		else
 			printf("%d", i);
 
 		if (i < 100)
 			printf(" ");
 	}
-
 	printf("\n");
 	return (0);
 }
