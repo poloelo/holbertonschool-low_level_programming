@@ -2,6 +2,10 @@
 
 void _puts(char *str)
 {
-char *i;
-for (i = str; i < (str + _strlen(str)); i++) _putchar(*i);
+while(*str != '\0')
+{
+_putchar(*str);
+str++;
+}
+_putchar('\n');
 }
