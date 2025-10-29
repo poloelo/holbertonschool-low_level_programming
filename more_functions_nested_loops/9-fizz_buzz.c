@@ -1,4 +1,4 @@
-#include "main.h"
+#include <stdio.h>
 
 int mul_three(int n);
 int mul_five(int n);
@@ -19,8 +19,8 @@ else if (mul_five(i) == 1) print_Buzz();
 else if (mul_three(i) == 1) print_Fizz();
 else
 {
-_putchar('0' + i);
-_putchar (' ');
+putchar('0' + i);
+putchar(' ');
 }
 }
 if (i >= 10 && i < 100)
@@ -30,18 +30,18 @@ else if (mul_five(i) == 1) print_Buzz();
 else if (mul_three(i) == 1) print_Fizz();
 else
 { 
-_putchar('0' + i/10);
-_putchar('0' + i%10);
-_putchar(' ');
+putchar('0' + i/10);
+putchar('0' + i%10);
+putchar(' ');
 }
 }
 if (i >= 100)
 {
-_putchar('B');
-_putchar('u');
-_putchar('z');
-_putchar('z');
-_putchar('\n');
+putchar('B');
+putchar('u');
+putchar('z');
+putchar('z');
+putchar('\n');
 }
 }
 return 0;
@@ -67,31 +67,31 @@ else return 0;
 
 void print_Fizz(void)
 {
-_putchar('F');
-_putchar('i');
-_putchar('z');
-_putchar('z');
-_putchar(' ');
+putchar('F');
+putchar('i');
+putchar('z');
+putchar('z');
+putchar(' ');
 }
 
 void print_Buzz(void)
 {
-_putchar('B');
-_putchar('u');
-_putchar('z');
-_putchar('z');
-_putchar(' ');
+putchar('B');
+putchar('u');
+putchar('z');
+putchar('z');
+putchar(' ');
 }
 
 void print_Fizz_Buzz(void)
 {
-_putchar('F');
-_putchar('i');
-_putchar('z');
-_putchar('z');
-_putchar('B');
-_putchar('u');
-_putchar('z');
-_putchar('z');
-_putchar(' ');
-}
+putchar('F');
+putchar('i');
+putchar('z');
+putchar('z');
+putchar('B');
+putchar('u');
+putchar('z');
+putchar('z');
+putchar(' ');
+
