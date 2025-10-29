@@ -2,7 +2,6 @@
 
 void print_triangle(int size)
 {
-int size = 10;
 int i;
 int j;
 int k;
