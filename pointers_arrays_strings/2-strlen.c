@@ -7,7 +7,7 @@ char c = *s;
 while(c != "\0")
 {
 len++;
-c + 1;
+c++;
 }
 return (len);
 }
