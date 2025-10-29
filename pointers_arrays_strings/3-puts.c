@@ -2,6 +2,6 @@
 
 void _puts(char *str)
 {
-int i;
+int *i;
 for (i = str; i < (str + _strlen(str)); i++) _putchar(*i);
 }
