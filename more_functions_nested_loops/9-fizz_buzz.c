@@ -1,5 +1,4 @@
 #include <stdio.h>
-
 /**
  * is_multiple - check multiples of 3, 5, or both
  * @n: number to check
