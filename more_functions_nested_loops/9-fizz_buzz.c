@@ -1,97 +1,91 @@
 #include <stdio.h>
 
-int mul_three(int n);
-int mul_five(int n);
-int mul_three_five(int n);
-void print_Fizz(void);
-void print_Buzz(void);
-void print_Fizz_Buzz(void);
-
-int main(void)
-{
-int i;
-for (i = 1; i <= 100; i++)
-{
-if(i <= 9 && i > 0)
-{
-if (mul_three_five(i) == 1) print_Fizz_Buzz();
-else if (mul_five(i) == 1) print_Buzz();
-else if (mul_three(i) == 1) print_Fizz();
-else
-{
-putchar('0' + i);
-putchar(' ');
-}
-}
-if (i >= 10 && i < 100)
-{
-if (mul_three_five(i) == 1) print_Fizz_Buzz();
-else if (mul_five(i) == 1) print_Buzz();
-else if (mul_three(i) == 1) print_Fizz();
-else
-{ 
-putchar('0' + i/10);
-putchar('0' + i%10);
-putchar(' ');
-}
-}
-if (i >= 100)
-{
-putchar('B');
-putchar('u');
-putchar('z');
-putchar('z');
-putchar('\n');
-}
-}
-return 0;
-}
-
+/**
+ * mul_three - checks if n is multiple of 3
+ * @n: integer to check
+ * Return: 1 if true, 0 otherwise
+ */
 int mul_three(int n)
 {
-if (n % 3 == 0) return 1;
-else return 0;
+	if (n % 3 == 0)
+		return (1);
+	else
+		return (0);
 }
 
+/**
+ * mul_five - checks if n is multiple of 5
+ * @n: integer to check
+ * Return: 1 if true, 0 otherwise
+ */
 int mul_five(int n)
 {
-if (n % 5 == 0) return 1;
-else return 0;
+	if (n % 5 == 0)
+		return (1);
+	else
+		return (0);
 }
 
+/**
+ * mul_three_five - checks if n is multiple of both 3 and 5
+ * @n: integer to check
+ * Return: 1 if true, 0 otherwise
+ */
 int mul_three_five(int n)
 {
-if (n % 3 == 0 && n % 5 == 0) return 1;
-else return 0;
+	if ((n % 3 == 0) && (n % 5 == 0))
+		return (1);
+	else
+		return (0);
 }
 
+/**
+ * print_Fizz - prints "Fizz"
+ */
 void print_Fizz(void)
 {
-putchar('F');
-putchar('i');
-putchar('z');
-putchar('z');
-putchar(' ');
+	printf("Fizz");
 }
 
+/**
+ * print_Buzz - prints "Buzz"
+ */
 void print_Buzz(void)
 {
-putchar('B');
-putchar('u');
-putchar('z');
-putchar('z');
-putchar(' ');
+	printf("Buzz");
 }
 
+/**
+ * print_Fizz_Buzz - prints "FizzBuzz"
+ */
 void print_Fizz_Buzz(void)
 {
-putchar('F');
-putchar('i');
-putchar('z');
-putchar('z');
-putchar('B');
-putchar('u');
-putchar('z');
-putchar('z');
-putchar(' ');
+	printf("FizzBuzz");
+}
+
+/**
+ * main - prints numbers 1 to 100 with FizzBuzz logic
+ * Return: 0
+ */
+int main(void)
+{
+	int i;
+
+	for (i = 1; i <= 100; i++)
+	{
+		if (mul_three_five(i))
+			print_Fizz_Buzz();
+		else if (mul_three(i))
+			print_Fizz();
+		else if (mul_five(i))
+			print_Buzz();
+		else
+			printf("%d", i);
+
+		if (i < 100)
+			printf(" ");
+	}
+
+	printf("\n");
+	return (0);
 }
