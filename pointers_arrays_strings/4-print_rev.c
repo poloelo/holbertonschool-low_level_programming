@@ -7,5 +7,6 @@ c = s + _strlen(s) - 1;
 while(c >= s)
 {
 _putchar(*c);
+c--;
 }
 }
