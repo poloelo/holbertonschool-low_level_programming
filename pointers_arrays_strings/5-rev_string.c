@@ -21,13 +21,14 @@ int _strlen(char *s)
  */
 void rev_string(char *s)
 {
-int len = _strlen(s);
-char reversed_string[len + 1];
-int i; 
-for (i = 0; i < len; i++)
-{
-reversed_string[i] = *(s + len - (1+i));
-}
-for (i = 0; i < len; i++) s[i] = reversed_string[i];
-reversed_string[len] = '\0';
+    int i, len;
+    char tmp;
+
+    len = _strlen(s);
+    for (i = 0; i < len / 2; i++)
+    {
+        tmp = s[i];
+        s[i] = s[len - 1 - i];
+        s[len - 1 - i] = tmp;
+    }
 }
