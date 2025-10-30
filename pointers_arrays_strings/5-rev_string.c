@@ -1,10 +1,10 @@
 #include "main.h"
 
 /**
- * _strlen - calcule la longueur d'une chaîne
- * @s: chaîne de caractères
+ * _strlen - Calcule la longueur d'une chaîne
+ * @s: Chaîne de caractères
  *
- * Return: longueur de la chaîne
+ * Return: Longueur de la chaîne
  */
 int _strlen(char *s)
 {
@@ -16,19 +16,22 @@ int _strlen(char *s)
 }
 
 /**
- * print_rev - imprime une chaîne en ordre inverse
- * @s: chaîne à afficher
+ * rev_string - Inverse une chaîne de caractères
+ * @s: Chaîne à inverser
+ *
+ * Return: void
  */
 void rev_string(char *s)
 {
-    int i, len;
-    char tmp;
+	int i, len;
+	char tmp;
 
-    len = _strlen(s);
-    for (i = 0; i < len / 2; i++)
-    {
-        tmp = s[i];
-        s[i] = s[len - 1 - i];
-        s[len - 1 - i] = tmp;
-    }
+	len = _strlen(s);
+
+	for (i = 0; i < len / 2; i++)
+	{
+		tmp = s[i];
+		s[i] = s[len - 1 - i];
+		s[len - 1 - i] = tmp;
+	}
 }
