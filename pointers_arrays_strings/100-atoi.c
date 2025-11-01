@@ -24,11 +24,10 @@ int _atoi(char *s)
 			found_digit = 1;
 			digit = s[i] - '0';
 
-			if (number > (2147483647 - digit) / 10)
-			{
-				number = (sign == 1) ? 2147483647 : -2147483648;
-				break;
-			}
+			if (sign == 1 && (number > (2147483647 - digit) / 10))
+				return (2147483647);
+			if (sign == -1 && (number > (2147483648 - digit) / 10))
+				return (-2147483648);
 
 			number = (number * 10) + digit;
 		}
@@ -39,5 +38,5 @@ int _atoi(char *s)
 		i++;
 	}
 
-	return (number * sign);
+	return (sign == 1 ? number : -number);
 }
