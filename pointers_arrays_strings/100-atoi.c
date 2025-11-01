@@ -12,6 +12,7 @@ int _atoi(char *s)
 	int sign = 1;
 	int number = 0;
 	int found_digit = 0;
+	int digit;
 
 	while (s[i] != '\0')
 	{
@@ -21,8 +22,15 @@ int _atoi(char *s)
 		else if (s[i] >= '0' && s[i] <= '9')
 		{
 			found_digit = 1;
-			/* on ajoute le nouveau chiffre à la fin du nombre */
-			number = (number * 10) + (s[i] - '0');
+			digit = s[i] - '0';
+
+			if (number > (2147483647 - digit) / 10)
+			{
+				number = (sign == 1) ? 2147483647 : -2147483648;
+				break;
+			}
+
+			number = (number * 10) + digit;
 		}
 
 		else if (found_digit)
