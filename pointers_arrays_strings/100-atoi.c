@@ -1,32 +1,30 @@
 #include "main.h"
 
-int _strlen(char *str)
-{
-    int len = 0;
-    while (str[len] != '\0' )
-    {
-        len++;
-    }
-    return len;
-}
-
+/**
+ * _atoi - convertit une chaîne de caractères en entier
+ * @s: chaîne à convertir
+ *
+ * Return: l'entier converti, ou 0 si aucun chiffre trouvé
+ */
 int _atoi(char *s)
 {
-    int i;
-    int number = 0;
-    int dozens = 1;
-    int sign = 0;
-    for (i = 0; i < _strlen(s); i++ )
-    {
-        if (s[i] >= '0' && s[i] <= '9')
-        {
-            number = number + (s[i] * dozens);
-            dozens++;
-        }
-        else if (s[i] == '+') sign++;
-        else if (s[i] == '-') sign--;
-        else continue;
-    }
-    if (sign < 0) number *= (-1);
-    return number;
+	int i = 0;
+	int sign = 1;
+	int number = 0;
+	int found = 0;
+
+	while (s[i] != '\0')
+	{
+		if (s[i] == '-')
+			sign *= -1;
+		else if (s[i] >= '0' && s[i] <= '9')
+		{
+			found = 1;
+			number = number * 10 + (s[i] - '0');
+		}
+		else if (found)
+			break;
+		i++;
+	}
+	return (number * sign);
 }
