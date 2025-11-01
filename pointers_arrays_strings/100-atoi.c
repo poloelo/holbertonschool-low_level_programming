@@ -24,8 +24,8 @@ int _atoi(char *s)
             dozens++;
         }
         else if (s[i] == '+') sign++;
-        else if (s[i] == '-') sign--:
-        else continue:
+        else if (s[i] == '-') sign--;
+        else continue;
     }
     if (sign < 0) number =* -1;
     return number;
