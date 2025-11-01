@@ -30,3 +30,4 @@ int _atoi(char *s)
 	/* Appliquer le signe et retourner */
 	return ((int)(sign * number));
 }
+g
