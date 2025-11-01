@@ -1,10 +1,10 @@
 #include "main.h"
 
 /**
- * _atoi - convertit une chaîne de caractères en entier
+ * _atoi - convertit une chaîne en entier
  * @s: chaîne à convertir
  *
- * Return: entier converti, ou 0 si aucun chiffre
+ * Return: entier converti, ou 0 si aucun chiffre trouvé
  */
 int _atoi(char *s)
 {
@@ -12,6 +12,7 @@ int _atoi(char *s)
 	int sign = 1;
 	int number = 0;
 	int found_digit = 0;
+	int digit;
 
 	while (s[i] != '\0')
 	{
@@ -21,15 +22,22 @@ int _atoi(char *s)
 		else if (s[i] >= '0' && s[i] <= '9')
 		{
 			found_digit = 1;
+			digit = s[i] - '0';
 
-			/* Vérifie l’overflow avant multiplication */
-			if (sign == 1 && (number > (2147483647 - (s[i] - '0')) / 10))
-				return (2147483647);
-			if (sign == -1 && (number > (2147483648 - (s[i] - '0')) / 10))
-				return (-2147483648);
+			if (sign == 1)
+			{
+				if (number > (2147483647 - digit) / 10)
+					return (2147483647);
+			}
+			else
+			{
+				if (number > (2147483648 - digit) / 10)
+					return (-2147483648);
+			}
 
-			number = (number * 10) + (s[i] - '0');
+			number = (number * 10) + digit;
 		}
+
 		else if (found_digit)
 			break;
 
@@ -37,8 +45,11 @@ int _atoi(char *s)
 	}
 
 	if (sign == -1)
-		number *= -1;
+	{
+		if (number == 2147483648)
+			return (-2147483648);
+		number = -number;
+	}
 
 	return (number);
 }
-
