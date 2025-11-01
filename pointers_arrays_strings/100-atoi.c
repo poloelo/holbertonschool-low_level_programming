@@ -18,26 +18,18 @@ int _atoi(char *s)
 	{
 		if (s[i] == '-')
 			sign *= -1;
-
 		else if (s[i] >= '0' && s[i] <= '9')
 		{
 			found_digit = 1;
 			digit = s[i] - '0';
 
-			if (sign == 1)
-			{
-				if (number > (2147483647 - digit) / 10)
-					return (2147483647);
-			}
-			else
-			{
-				if (number > (2147483648 - digit) / 10)
-					return (-2147483648);
-			}
+			if (sign == 1 && number > (2147483647 - digit) / 10)
+				return (2147483647);
+			if (sign == -1 && number > (2147483648 - digit) / 10)
+				return (-2147483648);
 
 			number = (number * 10) + digit;
 		}
-
 		else if (found_digit)
 			break;
 
@@ -45,11 +37,7 @@ int _atoi(char *s)
 	}
 
 	if (sign == -1)
-	{
-		if (number == 2147483648)
-			return (-2147483648);
 		number = -number;
-	}
 
 	return (number);
 }
