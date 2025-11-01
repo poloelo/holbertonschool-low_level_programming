@@ -27,6 +27,6 @@ int _atoi(char *s)
         else if (s[i] == '-') sign--;
         else continue;
     }
-    if (sign < 0) number =* -1;
+    if (sign < 0) number *= (-1);
     return number;
 }
