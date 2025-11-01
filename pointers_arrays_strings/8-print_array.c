@@ -6,7 +6,8 @@
  * @a: pointeur vers le tableau d'entiers
  * @n: nombre d'éléments à afficher
  *
- * Description: Affiche les éléments séparés par ", " et se termine par un \n.
+ * Description: Affiche les éléments séparés 
+ * par ", " et se termine par un \n.
  */
 void print_array(int *a, int n)
 {
