@@ -24,8 +24,11 @@ int _atoi(char *s)
 			found_digit = 1;
 			digit = s[i] - '0';
 
+			/* Vérification overflow positif */
 			if (sign == 1 && (number > (2147483647 - digit) / 10))
 				return (2147483647);
+
+			/* Vérification overflow négatif */
 			if (sign == -1 && (number > (2147483648 - digit) / 10))
 				return (-2147483648);
 
@@ -38,5 +41,8 @@ int _atoi(char *s)
 		i++;
 	}
 
-	return (sign == 1 ? number : -number);
+	if (sign == -1)
+		number *= -1;
+
+	return (number);
 }
