@@ -1,7 +1,9 @@
 #include "main.h"
 
 /**
- * _memcpy - copie une zone mémoire d’une adresse source vers une destination
+ * _memcpy - copie une zone mémoire d’une adresse source
+ * vers une destination
+ *
  * @dest: adresse de la mémoire de destination
  * @src: adresse de la mémoire source
  * @n: nombre d’octets à copier
