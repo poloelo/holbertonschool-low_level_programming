@@ -20,7 +20,8 @@ int _strlen(char *str)
 }
 
 /**
- * _strchr - recherche la première occurrence d’un caractère dans une chaîne
+ * _strchr - recherche la première occurrence
+ * d’un caractère dans une chaîne
  * @s: la chaîne à parcourir
  * @c: le caractère à rechercher
  *
