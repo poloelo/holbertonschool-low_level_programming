@@ -1,43 +1,34 @@
 #include "main.h"
 
 /**
- * _strlen - calcule la longueur d’une chaîne de caractères
- * @str: la chaîne dont on veut connaître la longueur
+ * _strspn - Gets the length of a prefix substring
+ * @s: The string to be scanned
+ * @accept: The string containing the accepted characters
  *
- * Return: la longueur de la chaîne
+ * Return: The number of bytes in the initial segment of s
+ *         which consist only of bytes from accept
  */
-int _strlen(char *str)
-{
-	int len = 0;
-
-	while (str[len] != '\0')
-	{
-		len++;
-	}
-
-	return (len);
-}
-
 unsigned int _strspn(char *s, char *accept)
 {
-    unsigned int i, j;
-    int found;
-    for (i = 0; s[i] != '\0'; i++)
-    {
-        found = 0;
+	unsigned int i, j;
+	int found;
 
-        for (j = 0; accept[j] != '\0'; j++)
-        {
-            if (s[i] == accept[j])
-            {
-                found = 1;
-                break;
-            }
-            
-        }
-        
-        if (found == 0) return i;
+	for (i = 0; s[i] != '\0'; i++)
+	{
+		found = 0;
 
-    }
-    return i;
+		for (j = 0; accept[j] != '\0'; j++)
+		{
+			if (s[i] == accept[j])
+			{
+				found = 1;
+				break;
+			}
+		}
+
+		if (found == 0)
+			return (i);
+	}
+
+	return (i);
 }
