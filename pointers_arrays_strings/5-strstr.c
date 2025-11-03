@@ -5,7 +5,7 @@ char *_strstr(char *haystack, char *needle)
 {
     int i, j;
 
-    if (*needle == '\0') // cas spécial : needle vide
+    if (*needle == '\0')
         return (haystack);
 
     for (i = 0; haystack[i] != '\0'; i++)
@@ -16,7 +16,7 @@ char *_strstr(char *haystack, char *needle)
                 break;
         }
 
-        if (needle[j] == '\0') // si on a tout trouvé
+        if (needle[j] == '\0') 
             return (haystack + i);
     }
 
