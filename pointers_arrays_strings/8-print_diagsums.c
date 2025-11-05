@@ -2,11 +2,12 @@
 
 void print_diagsums(int *a, int size)
 {
-    int i, j, f_diag, s_diag ;
+    int i, j, f_diag, s_diag;
+    f_diag = 0;
+    s_diag = 0;
     for (i = 0; i < size; i++)
-        for (j = 0; j < size; j++)
         {
-            if (i == j) f_diag += *(a + i + j);
-            if ((size - i) == (size - j)) s_diag += *(a + (size - i) + (size - j));
+            f_diag += *(a +  i*size + i);
+            s_diag += *(a + i*size + (size - 1 -i));
         }
 }
