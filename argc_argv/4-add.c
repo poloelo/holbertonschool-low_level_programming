@@ -23,7 +23,7 @@ return (1);
 
 for (i = 1; i < argc; i++)
 {
-    if (*argv[i] > '9' && *argv[i] < '0' )
+    if (*argv[i] > '9' || *argv[i] < '0' )
 {
     printf("Error\n");
     return 1;
