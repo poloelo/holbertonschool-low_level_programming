@@ -8,21 +8,27 @@
  */
 int _sqrt_recursion(int n)
 {
-    return (_sqrt_helper(n, 1));
-}
+    static int i = 0; /* compteur interne */
 
-/**
- * _sqrt_helper - cherche récursivement la racine carrée
- * @n: nombre
- * @i: test courant
- *
- * Return: racine carrée ou -1
- */
-int _sqrt_helper(int n, int i)
-{
-    if (i * i == n)
-        return (i);
-    if (i * i > n)
+    if (n < 0)
+    {
+        i = 0;
         return (-1);
-    return (_sqrt_helper(n, i + 1));
+    }
+
+    if (i * i == n)
+    {
+        int res = i;
+        i = 0;
+        return (res);
+    }
+
+    if (i * i > n)
+    {
+        i = 0;
+        return (-1);
+    }
+
+    i++;
+    return (_sqrt_recursion(n));
 }
