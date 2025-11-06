@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 /**
- * main - multiplie deux nombres passés en arguments
+ * main - additionne tous les nombres passés en arguments
  * @argc: nombre d'arguments
  * @argv: tableau des arguments
  *
@@ -11,24 +11,34 @@
  */
 int main(int argc, char *argv[])
 {
+    int i, j, sum;
+    char *arg;
 
-int i, count;
-count = 0;
+    sum = 0;
 
-if (argc < 2) 
-{
-printf("Error\n");
-return (1);
-}
+    if (argc < 2)
+    {
+        printf("Error\n");
+        return (1);
+    }
 
-for (i = 1; i < argc; i++)
-{
-    if (*argv[i] > '9' || *argv[i] < '0' )
-{
-    printf("Error\n");
-    return 1;
-}
-else count += atoi(argv[i]);
-}
-printf("%d\n", count);
+    for (i = 1; i < argc; i++)
+    {
+        arg = argv[i];
+
+        for (j = 0; arg[j] != '\0'; j++)
+        {
+            if (arg[j] < '0' || arg[j] > '9') /* vérifie tous les caractères */
+            {
+                printf("Error\n");
+                return (1);
+            }
+        }
+
+        sum += atoi(arg);
+    }
+
+    printf("%d\n", sum);
+
+    return (0);
 }
