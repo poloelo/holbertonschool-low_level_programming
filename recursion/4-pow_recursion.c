@@ -3,7 +3,7 @@
 /**
  * _pow_recursion - calcule x à la
  * puissance y de manière récursive
- * 
+ *
  * @x: base
  * @y: exposant
  *
