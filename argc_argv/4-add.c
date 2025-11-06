@@ -11,34 +11,27 @@
  */
 int main(int argc, char *argv[])
 {
-    int i, j, sum;
-    char *arg;
-
-    sum = 0;
-
-    if (argc < 2)
-    {
-        printf("Error\n");
-        return (1);
-    }
-
-    for (i = 1; i < argc; i++)
-    {
-        arg = argv[i];
-
-        for (j = 0; arg[j] != '\0'; j++)
-        {
-            if (arg[j] < '0' || arg[j] > '9') /* vérifie tous les caractères */
-            {
-                printf("Error\n");
-                return (1);
-            }
-        }
-
-        sum += atoi(arg);
-    }
-
-    printf("%d\n", sum);
-
-    return (0);
+int i, j, sum;
+char *arg;
+sum = 0;
+if (argc < 2)
+{
+printf("0\n");
+return (1);
+}
+for (i = 1; i < argc; i++)
+{
+arg = argv[i];
+for (j = 0; arg[j] != '\0'; j++)
+{
+if (arg[j] < '0' || arg[j] > '9') /* vérifie tous les caractères */
+{
+printf("Error\n");
+return (1);
+}
+}
+sum += atoi(arg);
+}
+printf("%d\n", sum);
+return (0);
 }
