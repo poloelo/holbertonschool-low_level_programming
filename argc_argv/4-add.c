@@ -19,10 +19,11 @@ return (1);
 }
 
 int count = 0;
+int i;
 
 for (i = 1; i < argc; i++)
 {
-if (argv[i] > '9' && argv < '0' )
+    if (*argv[i] > '9' && *argv[i] < '0' )
 {
     printf("Error\n");
     return 1;
