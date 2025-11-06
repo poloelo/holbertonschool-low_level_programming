@@ -8,27 +8,26 @@
  */
 int _sqrt_recursion(int n)
 {
-    static int i = 0; /* compteur interne */
+    return (_sqrt_recursion_helper(n, 1));
+}
 
+/**
+ * _sqrt_recursion_helper - fonction récursive interne
+ * @n: nombre dont on veut la racine
+ * @i: essai courant
+ *
+ * Return: racine carrée naturelle ou -1
+ */
+int _sqrt_recursion_helper(int n, int i)
+{
     if (n < 0)
-    {
-        i = 0;
         return (-1);
-    }
 
     if (i * i == n)
-    {
-        int res = i;
-        i = 0;
-        return (res);
-    }
+        return (i);
 
     if (i * i > n)
-    {
-        i = 0;
         return (-1);
-    }
 
-    i++;
-    return (_sqrt_recursion(n));
+    return (_sqrt_recursion_helper(n, i + 1));
 }
