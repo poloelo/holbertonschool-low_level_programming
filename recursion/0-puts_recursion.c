@@ -1,7 +1,9 @@
 #include "main.h"
 #include <stdio.h>
 /**
- * _puts_recursion - imprime une chaîne de caractères suivie d’un saut de ligne
+ * _puts_recursion - imprime une chaîne de
+ * caractères suivie d’un saut de ligne
+ * 
  * @s: pointeur vers la chaîne à imprimer
  *
  * Return: rien
