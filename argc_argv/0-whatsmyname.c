@@ -1,6 +1,14 @@
 #include <stdio.h>
+#include <stdio.h>
 
-int main(int argc,char *argv[])
+/**
+ * main - affiche le nom du programme
+ * @argc: nombre d'arguments
+ * @argv: tableau des arguments
+ *
+ * Return: toujours 0
+ */
+int main(int argc, char *argv[])
 {
 printf("%s\n", argv[0]);
 }
