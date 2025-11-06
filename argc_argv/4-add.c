@@ -12,14 +12,14 @@
 int main(int argc, char *argv[])
 {
 
+int i, count;
+count = 0;
+
 if (argc < 2) 
 {
 printf("Error\n");
 return (1);
 }
-
-int count = 0;
-int i;
 
 for (i = 1; i < argc; i++)
 {
