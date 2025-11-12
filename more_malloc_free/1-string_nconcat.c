@@ -10,14 +10,14 @@ int _strlen(char *str)
 
 char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
-    unsigned int i, len1, len2; 
+    unsigned int i, len1;
+    char *concat; 
     if (s1 == NULL) s1 = "";
     if (s2 == NULL) s2 = "";
 
-    unsigned int len1 = _strlen(s1);
-    unsigned int len2 = _strlen(s2);
+    len1 = _strlen(s1);
 
-    char *concat = malloc((len1 + n + 1) * sizeof(char));
+    concat = malloc((len1 + n + 1) * sizeof(char));
     if (concat == NULL) return NULL;
     
     for (i = 0; i < len1; i++) concat[i] = s1[i];
