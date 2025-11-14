@@ -1,49 +1,72 @@
 #include "dog.h"
 #include <stdlib.h>
-#include <string.h>
 
 /**
- * new_dog - crée un nouveau dog_t (deep copy)
- * @name: nom du chien
- * @age: âge du chien
- * @owner: propriétaire du chien
+ * _strlen - returns length of a string
+ * @s: string
+ * Return: length
+ */
+int _strlen(char *s)
+{
+    int i = 0;
+    while (s[i])
+        i++;
+    return (i);
+}
+
+/**
+ * _strcpy - copies string
+ * @dest: destination
+ * @src: source
+ * Return: dest
+ */
+char *_strcpy(char *dest, char *src)
+{
+    int i = 0;
+
+    while (src[i])
+    {
+        dest[i] = src[i];
+        i++;
+    }
+    dest[i] = '\0';
+    return (dest);
+}
+
+/**
+ * new_dog - creates a new dog
+ * @name: dog name
+ * @age: dog age
+ * @owner: dog owner
  *
- * Return: pointeur vers une nouvelle struct dog_t, ou NULL si erreur
+ * Return: pointer to new dog, NULL if fail
  */
 dog_t *new_dog(char *name, float age, char *owner)
 {
-	dog_t *ndog;
-	char *name_copy;
-	char *owner_copy;
+    dog_t *d;
 
-	if (name == NULL || owner == NULL)
-		return (NULL);
+    d = malloc(sizeof(dog_t));
+    if (d == NULL)
+        return (NULL);
 
-	ndog = malloc(sizeof(dog_t));
-	if (ndog == NULL)
-		return (NULL);
+    d->name = malloc(_strlen(name) + 1);
+    if (d->name == NULL)
+    {
+        free(d);
+        return (NULL);
+    }
 
-	name_copy = malloc(strlen(name) + 1);
-	if (name_copy == NULL)
-	{
-		free(ndog);
-		return (NULL);
-	}
+    d->owner = malloc(_strlen(owner) + 1);
+    if (d->owner == NULL)
+    {
+        free(d->name);
+        free(d);
+        return (NULL);
+    }
 
-	owner_copy = malloc(strlen(owner) + 1);
-	if (owner_copy == NULL)
-	{
-		free(name_copy);
-		free(ndog);
-		return (NULL);
-	}
+    _strcpy(d->name, name);
+    _strcpy(d->owner, owner);
+    d->age = age;
 
-	strcpy(name_copy, name);
-	strcpy(owner_copy, owner);
-
-	ndog->name = name_copy;
-	ndog->owner = owner_copy;
-	ndog->age = age;
-
-	return (ndog);
+    return (d);
 }
