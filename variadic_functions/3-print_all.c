@@ -2,82 +2,84 @@
 #include <stdarg.h>
 #include <stdio.h>
 
-/* --- Fonctions spécialisées --- */
-
-void p_char(va_list ap)
+/**
+ * print_char - Imprime un caractère
+ * @args: liste d'arguments
+ */
+void print_char(va_list args)
 {
-	printf("%c", va_arg(ap, int));
+	printf("%c", va_arg(args, int));
 }
 
-void p_int(va_list ap)
+/**
+ * print_int - Imprime un entier
+ * @args: liste d'arguments
+ */
+void print_int(va_list args)
 {
-	printf("%d", va_arg(ap, int));
+	printf("%d", va_arg(args, int));
 }
 
-void p_float(va_list ap)
+/**
+ * print_float - Imprime un float
+ * @args: liste d'arguments
+ */
+void print_float(va_list args)
 {
-	printf("%f", va_arg(ap, double));
+	printf("%f", va_arg(args, double));
 }
 
-void p_string(va_list ap)
+/**
+ * print_string - Imprime une chaîne
+ * @args: liste d'arguments
+ */
+void print_string(va_list args)
 {
-	char *s = va_arg(ap, char *);
-	if (s == NULL)
+	char *str = va_arg(args, char *);
+
+	if (str == NULL)
 	{
 		printf("(nil)");
 		return;
 	}
-	printf("%s", s);
+	printf("%s", str);
 }
 
-/* --- Structure pour le mapping --- */
-typedef struct printer {
-	char c;
-	void (*f)(va_list);
-} printer_t;
-
-/* --- Fonction principale --- */
-
+/**
+ * print_all - Imprime n'importe quoi
+ * @format: liste des types d'arguments
+ */
 void print_all(const char * const format, ...)
 {
-	printer_t ops[] = {
-		{'c', p_char},
-		{'i', p_int},
-		{'f', p_float},
-		{'s', p_string},
-		{0, NULL}
+	va_list args;
+	int i = 0, j;
+	char *separator = "";
+	printer_t printers[] = {
+		{'c', print_char},
+		{'i', print_int},
+		{'f', print_float},
+		{'s', print_string},
+		{'\0', NULL}
 	};
 
-	va_list ap;
-	int i = 0, j, comma = 0;
+	va_start(args, format);
 
-	va_start(ap, format);
-
-	/* WHILE n°1 : parcourir format */
 	while (format && format[i])
 	{
 		j = 0;
-
-		/* WHILE n°2 : parcourir les types */
-		while (ops[j].c)
+		while (printers[j].type != '\0')
 		{
-			/* IF n°1 : vérifier correspondance */
-			if (format[i] == ops[j].c)
+			if (format[i] == printers[j].type)
 			{
-				/* IF n°2 : imprimer virgule si nécessaire */
-				if (comma)
-					printf(", ");
-
-				ops[j].f(ap);
-				comma = 1;
-
-				break;  /* pas d’else */
+				printf("%s", separator);
+				printers[j].func(args);
+				separator = ", ";
+				break;
 			}
 			j++;
 		}
 		i++;
 	}
-
 	printf("\n");
-	va_end(ap);
+	va_end(args);
 }
