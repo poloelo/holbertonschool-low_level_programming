@@ -11,8 +11,7 @@
  */
 list_t *add_node_end(list_t **head, const char *str)
 {
-	list_t *new_node;
-	list_t *temp;
+	list_t *new_node, *temp;
 	char *dup_str;
 
 	if (head == NULL || str == NULL)
@@ -33,13 +32,12 @@ list_t *add_node_end(list_t **head, const char *str)
 	new_node->len = strlen(str);
 	new_node->next = NULL;
 
-	if (*head == NULL) /* liste vide */
+	if (*head == NULL)
 	{
 		*head = new_node;
 		return (new_node);
 	}
 
-	/* Parcours jusqu'au dernier noeud */
 	temp = *head;
 	while (temp->next != NULL)
 		temp = temp->next;
