@@ -1,5 +1,6 @@
 #ifndef MAIN_H
 #define MAIN_H
+#include <stddef.h> /* pour size_t */
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
