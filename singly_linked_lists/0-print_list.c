@@ -1,11 +1,11 @@
+#include <stdio.h>
 #include "lists.h"
-#include <stdio.h> /* Autorisé uniquement pour cette tâche */
 
 /**
  * print_list - prints all the elements of a list_t list
- * @h: pointer to the linked list (head)
+ * @h: pointer to the head of the list
  *
- * Return: the number of nodes
+ * Return: number of nodes
  */
 size_t print_list(const list_t *h)
 {
