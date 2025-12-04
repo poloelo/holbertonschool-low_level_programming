@@ -6,7 +6,7 @@ size_t print_list(const list_t *h)
     do
     {
     if (h->str == NULL) printf("[0] (nil)\n");
-    else printf("%s\n", h->str);
+    else printf("[%i] %s\n",h->len, h->str);
     h = h->next;
     total++;
     } while (h != NULL);
