@@ -1,8 +1,8 @@
-#ifndef MAIN_H
-#define MAIN_H
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
+#ifndef LISTS_H
+#define LISTS_H
+
+#include <stddef.h> /* Pour la définition de size_t */
+
 /**
  * struct list_s - singly linked list
  * @str: string - (malloc'ed string)
@@ -10,6 +10,7 @@
  * @next: points to the next node
  *
  * Description: singly linked list node structure
+ * for Holberton project
  */
 typedef struct list_s
 {
@@ -18,8 +19,10 @@ typedef struct list_s
     struct list_s *next;
 } list_t;
 
-size_t print_list(const list_t *h);
-size_t list_len(const list_t *h);
+/* Prototypes de fonction */
 list_t *add_node(list_t **head, const char *str);
+size_t print_list(const list_t *h); 
+size_t list_len(const list_t *h);
+/* ... autres prototypes ... */
 
-#endif
+#endif /* LISTS_H */
