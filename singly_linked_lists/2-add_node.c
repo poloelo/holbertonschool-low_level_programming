@@ -11,25 +11,34 @@
  */
 list_t *add_node(list_t **head, const char *str)
 {
-	list_t *new_node;
+    list_t *new_node;
+    char *dup_str;
 
-	if (!head || !str)
-		return (NULL);
+    if (!head || !str)
+        return (NULL);
 
-	new_node = malloc(sizeof(list_t));
-	if (!new_node)
-		return (NULL);
+    /* 1. Dupliquer la chaîne en premier */
+    dup_str = strdup(str);
+    if (!dup_str)
+    {
+        return (NULL); /* Échec de strdup */
+    }
 
-	new_node->str = strdup(str);
-	if (!new_node->str)
-	{
-		free(new_node);
-		return (NULL);
-	}
+    /* 2. Allouer le nouveau nœud */
+    new_node = malloc(sizeof(list_t));
+    if (!new_node)
+    {
+        free(dup_str); /* IMPORTANT: Libérer la chaîne si le nœud échoue */
+        return (NULL);
+    }
 
-	new_node->len = strlen(str);
-	new_node->next = *head;
-	*head = new_node;
+    /* 3. Initialiser les champs */
+    new_node->str = dup_str;
+    new_node->len = strlen(dup_str); /* Ou strlen(str), les deux sont corrects */
+    
+    /* 4. Mettre à jour la liste (ajout au début) */
+    new_node->next = *head;
+    *head = new_node;
 
-	return (new_node);
+    return (new_node);
 }
