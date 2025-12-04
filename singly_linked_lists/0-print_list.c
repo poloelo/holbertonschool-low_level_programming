@@ -3,13 +3,12 @@
 size_t print_list(const list_t *h)
 {
     int total = 0;
-    while(h->next != NULL)
+    do
     {
-    printf("%s\n", h->str);
+    if (h->str == NULL) printf("[0] (nil)\n");
+    else printf("%s\n", h->str);
     h = h->next;
     total++;
-    }
-    printf("%s\n", h->str);
-    total++;
+    } while (h != NULL);
     return total;
 }
