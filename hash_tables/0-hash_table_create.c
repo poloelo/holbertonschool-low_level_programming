@@ -2,33 +2,40 @@
 #include <stdlib.h>
 
 /**
- * hash_table_create - Creates a hash table
- * @size: Size of the array
+ * hash_table_create - Creates a hash table.
+ * @size: The size of the array (number of buckets).
  *
- * Return: Pointer to the new hash table, or NULL if it fails
+ * Return: A pointer to the newly created hash table, or NULL if error.
  */
 hash_table_t *hash_table_create(unsigned long int size)
 {
-	hash_table_t *ht;
-	unsigned long int i;
+    hash_table_t *ht = NULL;
+    unsigned long int i;
 
-	if (size == 0)
-		return (NULL);
+    /* 1. Allocate memory for the hash table structure (the metadata) */
+    ht = malloc(sizeof(hash_table_t));
+    if (ht == NULL)
+        return (NULL);
 
-	ht = malloc(sizeof(hash_table_t));
-	if (ht == NULL)
-		return (NULL);
+    /* 2. Set the size of the array */
+    ht->size = size;
 
-	ht->size = size;
-	ht->array = malloc(sizeof(hash_node_t *) * size);
-	if (ht->array == NULL)
-	{
-		free(ht);
-		return (NULL);
-	}
+    /* 3. Allocate memory for the array of hash_node_t pointers (the buckets) */
+    /* Note: calloc initializes memory to zero, which is perfect for pointers (NULL) */
+    ht->array = calloc(size, sizeof(hash_node_t *));
+    if (ht->array == NULL)
+    {
+        /* Clean up the previously allocated memory for the structure */
+        free(ht);
+        return (NULL);
+    }
 
-	for (i = 0; i < size; i++)
-		ht->array[i] = NULL;
+    /* Note: Since calloc was used, explicit initialization loop (like below) is optional */
+    /*
+    for (i = 0; i < size; i++)
+        ht->array[i] = NULL;
+    */
 
-	return (ht);
+    /* 4. Return the pointer to the created hash table */
+    return (ht);
 }
