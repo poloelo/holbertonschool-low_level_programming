@@ -1,55 +1,62 @@
 #include "hash_tables.h"
+#include <string.h>
+#include <stdlib.h>
 
 /**
- * hash_table_set - inserts or updates a key/value
+ * hash_table_set - Adds or updates an element in the hash table
  * @ht: hash table
  * @key: key (cannot be empty)
- * @value: value to store (will be duplicated)
+ * @value: value to store (duplicated)
  *
- * Return: 1 success, 0 fail
+ * Return: 1 on success, 0 on error
  */
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
-	unsigned long int idx;
+	unsigned long int index;
 	hash_node_t *node, *tmp;
+	char *value_copy;
 
 	if (ht == NULL || key == NULL || *key == '\0' || value == NULL)
 		return (0);
 
-	idx = key_index((const unsigned char *)key, ht->size);
-	tmp = ht->array[idx];
+	value_copy = strdup(value);
+	if (value_copy == NULL)
+		return (0);
 
-	/* Vérifier si la clé existe déjà → on update */
+	index = key_index((const unsigned char *)key, ht->size);
+	tmp = ht->array[index];
+
+	/* Check if key already exists → update */
 	while (tmp != NULL)
 	{
 		if (strcmp(tmp->key, key) == 0)
 		{
-			/* On remplace l’ancienne value */
 			free(tmp->value);
-			tmp->value = strdup(value);
-			return (tmp->value ? 1 : 0);
+			tmp->value = value_copy;
+			return (1);
 		}
 		tmp = tmp->next;
 	}
 
-	/* Sinon on ajoute un nouveau node (toujours en début) */
+	/* Key does not exist → create new node (add at beginning) */
 	node = malloc(sizeof(hash_node_t));
 	if (node == NULL)
+	{
+		free(value_copy);
 		return (0);
+	}
 
 	node->key = strdup(key);
-	node->value = strdup(value);
-
-	if (node->key == NULL || node->value == NULL)
+	if (node->key == NULL)
 	{
-		free(node->key);
-		free(node->value);
+		free(value_copy);
 		free(node);
 		return (0);
 	}
 
-	node->next = ht->array[idx]; /* chainage */
-	ht->array[idx] = node;
+	node->value = value_copy;
+	node->next = ht->array[index]; /* Chaining */
+	ht->array[index] = node;
 
 	return (1);
 }
