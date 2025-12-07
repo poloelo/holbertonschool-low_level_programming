@@ -1,68 +1,55 @@
+#include <stdlib.h>
+#include <string.h>
 #include "hash_tables.h"
-#include <stdlib.h> /* Pour malloc, free */
-#include <string.h> /* Pour strdup, strcmp */
 
 /**
- * hash_table_set - Ajoute ou met à jour un élément dans la table de hachage.
- * @ht: La table de hachage.
- * @key: Clé (ne peut pas être vide).
- * @value: Valeur associée à la clé (doit être dupliquée).
- *
- * Retourne: 1 si succès, 0 si échec.
+ * hash_table_set - Adds or updates an element in a hash table
+ * @ht: hash table
+ * @key: key (cannot be empty)
+ * @value: value (will be duplicated)
+ * Return: 1 if success, 0 if fail
  */
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
-    hash_node_t *new_node, *temp;
-    char *value_copy, *key_copy;
     unsigned long int index;
+    hash_node_t *new_node, *tmp;
 
-    /* 1. Vérifications des paramètres */
-    if (!ht || !key || *key == '\0' || !value)
+    if (!ht || !key || !*key || !value)
         return (0);
 
-    /* 2. Calculer l'index et dupliquer la valeur */
     index = key_index((const unsigned char *)key, ht->size);
-    value_copy = strdup(value);
-    if (!value_copy)
-        return (0);
 
-    /* 3. Gérer la mise à jour (Clé existante) */
-    temp = ht->array[index];
-    while (temp)
+    tmp = ht->array[index];
+    while (tmp)
     {
-        if (strcmp(temp->key, key) == 0)
+        if (strcmp(tmp->key, key) == 0)
         {
-            /* Clé trouvée: libérer l'ancienne valeur et mettre à jour */
-            free(temp->value);
-            temp->value = value_copy; /* Utilise la copie fraîchement faite */
-            return (1);
+            free(tmp->value);
+            tmp->value = strdup(value);
+            return (tmp->value ? 1 : 0);
         }
-        temp = temp->next;
+        tmp = tmp->next;
     }
 
-    /* 4. Gérer l'insertion (Nouvelle clé / Collision) */
-    /* Dupliquer la clé pour le nouveau noeud */
-    key_copy = strdup(key);
-    if (!key_copy)
-    {
-        free(value_copy);
-        return (0);
-    }
-
-    /* Allouer le nouveau noeud */
     new_node = malloc(sizeof(hash_node_t));
     if (!new_node)
+        return (0);
+
+    new_node->key = strdup(key);
+    if (!new_node->key)
     {
-        free(key_copy);
-        free(value_copy);
+        free(new_node);
         return (0);
     }
 
-    /* Remplir le noeud */
-    new_node->key = key_copy;
-    new_node->value = value_copy;
+    new_node->value = strdup(value);
+    if (!new_node->value)
+    {
+        free(new_node->key);
+        free(new_node);
+        return (0);
+    }
 
-    /* Ajouter au début de la liste chaînée (gestion de collision par prédécesseur) */
     new_node->next = ht->array[index];
     ht->array[index] = new_node;
 
